@@ -25,7 +25,6 @@ jobs:
 
           mkdir -p extracted
           unzip -o "$ZIP_FILE" -d extracted
-
           cp -a extracted/. .
           rm -rf extracted
 
@@ -33,6 +32,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add -A
-          git commit -m "Extract NEW DUBAI project ZIP" || echo "No changes"
+          git reset -- .github/workflows/build.yml
+
+          git commit -m "Extract NEW DUBAI project files" || echo "No changes"
           git push
